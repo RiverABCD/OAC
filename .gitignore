@@ -1,0 +1,16 @@
+# ---------------[ UE4 generated ]------------------ #
+/Binaries
+/DerivedDataCache
+/Intermediate
+/Saved
+/Content/StarterContent
+# ----[ Visual Studio ]------- #
+/.vs
+*.svd
+*.pidb
+*.suo
+*.sln
+*.VC.db
+*.opensdf
+*.opendb
+*.sdf
