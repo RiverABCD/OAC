@@ -1,2 +1,0 @@
-# OAC
-UE Demo
