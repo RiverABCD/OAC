@@ -17,7 +17,7 @@ public:
 	AMovingPlatform();
 
 	virtual void Tick(float DeltaTime) override;
- 
+	virtual void BeginPlay() override;
 	UPROPERTY(EditAnyWhere,Category = "Speed")
 	float Speed = 20.f;
 	

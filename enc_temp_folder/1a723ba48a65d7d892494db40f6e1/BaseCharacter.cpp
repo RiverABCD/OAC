@@ -92,22 +92,21 @@ void ABaseCharacter::BeginPlay()
 void ABaseCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	{
-		//how much speed to increase this frame
-		float rampThisFrame = (DeltaTime / TimeToMaxSpeed)*MaxSprint;
 
-		if (bIsSprinting)
-		{
-			CurrentSprint += rampThisFrame;
-		}
-		else {
-			CurrentSprint -= rampThisFrame;
-		}
-		//Clamp currentsprint between 1.0f and MaxSprint
-		CurrentSprint = FMath::Clamp(CurrentSprint, 1.f, MaxSprint);
-		//apply the movement change to the character
-		GetCharacterMovement()->MaxWalkSpeed = BaseRunSpeed * CurrentSprint;
+	//how much speed to increase this frame
+	float rampThisFrame = (DeltaTime / TimeToMaxSpeed)*MaxSprint;
+	
+	if (bIsSprinting)
+	{
+		CurrentSprint += rampThisFrame;
 	}
+	else {
+		CurrentSprint -= rampThisFrame;
+	}
+	//Clamp currentsprint between 1.0f and MaxSprint
+	CurrentSprint = FMath::Clamp(CurrentSprint, 1.f, MaxSprint);
+	//apply the movement change to the character
+	GetCharacterMovement()->MaxWalkSpeed = BaseRunSpeed * CurrentSprint;
 }
 
 // Called to bind functionality to input
