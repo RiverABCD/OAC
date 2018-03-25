@@ -22,7 +22,7 @@ ABaseCharacter::ABaseCharacter()
 	// create camera
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	// give it a larger FOV, 110 degrees
-	Camera->FieldOfView = 100.f;
+	Camera->FieldOfView = 120.f;
 	// attach the camera to the SpringArm
 	Camera->SetupAttachment(SpringArm);
 
@@ -68,9 +68,9 @@ ABaseCharacter::ABaseCharacter()
 	//not sprinting by default
 	bIsSprinting = false;
 	//default run speed
-	BaseRunSpeed = 600.f;
+	BaseRunSpeed = 300.f;
 	//set default max sprint to 2x normal speed
-	MaxSprint = 2.0f;
+	MaxSprint = 3.0f;
 	//currentsprint starts at 1x multiple of base speed
 	CurrentSprint = 1.0f;
 	//set MaxWalkSpeed in Movement Component to base run speed
