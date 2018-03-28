@@ -44,6 +44,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Base Character")
 		bool bIsFiring;
 
+	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Base Character")
+		//float BaseTurnRate;
+
+	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Base Character")
+		//float BaseLookUpRate;
+
 	// property for sprinting
 	UPROPERTY(EditDefaultsOnly, Category = "Base Character")
 		bool bIsSprinting;
@@ -60,6 +68,9 @@ public:
 	void MoveRight(float amount);
 	void CameraRotate(float amount);
 	void CameraHeight(float amount);
+	//void TurnAtRate(float Rate);
+	//void LookUpAtRate(float Rate);
+
 	void SprintStart();
 	void SprintEnd();
 

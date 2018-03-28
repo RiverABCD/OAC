@@ -9,6 +9,10 @@ ABaseCharacter::ABaseCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	// set our turn rates for input
+	//BaseTurnRate = 45.f;
+	//BaseLookUpRate = 45.f;
+
 	// create springArm
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm"));
 	// keep the springArm from rotating with character
@@ -116,18 +120,23 @@ void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	// bind action mappings
-	InputComponent->BindAction("Jump", EInputEvent::IE_Pressed, this, &ACharacter::Jump);
-	InputComponent->BindAction("Jump", EInputEvent::IE_Released, this, &ACharacter::StopJumping);
-	InputComponent->BindAction("Fire", EInputEvent::IE_Pressed, this, &ABaseCharacter::FireStart);
-	InputComponent->BindAction("Sprint", EInputEvent::IE_Pressed, this, &ABaseCharacter::SprintStart);
-	InputComponent->BindAction("Sprint", EInputEvent::IE_Released, this, &ABaseCharacter::SprintEnd);
+	PlayerInputComponent->BindAction("Jump", EInputEvent::IE_Pressed, this, &ACharacter::Jump);
+	PlayerInputComponent->BindAction("Jump", EInputEvent::IE_Released, this, &ACharacter::StopJumping);
+	PlayerInputComponent->BindAction("Fire", EInputEvent::IE_Pressed, this, &ABaseCharacter::FireStart);
+	PlayerInputComponent->BindAction("Sprint", EInputEvent::IE_Pressed, this, &ABaseCharacter::SprintStart);
+	PlayerInputComponent->BindAction("Sprint", EInputEvent::IE_Released, this, &ABaseCharacter::SprintEnd);
 
 
 	// bind axis mappings to function
-	InputComponent->BindAxis("MoveForward", this, &ABaseCharacter::MoveForward);
-	InputComponent->BindAxis("MoveRight", this, &ABaseCharacter::MoveRight);
-	InputComponent->BindAxis("CameraRotate", this, &ABaseCharacter::CameraRotate);
-	InputComponent->BindAxis("CameraHeight", this, &ABaseCharacter::CameraHeight);
+	PlayerInputComponent->BindAxis("MoveForward", this, &ABaseCharacter::MoveForward);
+	PlayerInputComponent->BindAxis("MoveRight", this, &ABaseCharacter::MoveRight);
+	PlayerInputComponent->BindAxis("CameraRotate", this, &ABaseCharacter::CameraRotate);
+	PlayerInputComponent->BindAxis("CameraHeight", this, &ABaseCharacter::CameraHeight);
+
+	//PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
+	//PlayerInputComponent->BindAxis("TurnRate", this, &ABaseCharacter::TurnAtRate);
+	//PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
+	//PlayerInputComponent->BindAxis("LookUpRate", this, &ABaseCharacter::LookUpAtRate);
 }
 
 void ABaseCharacter::MoveForward(float amount)
@@ -149,6 +158,17 @@ void ABaseCharacter::MoveRight(float amount)
 		AddMovementInput(SpringArm->GetRightVector(), amount);
 	}
 }
+/*
+void ABaseCharacter::TurnAtRate(float Rate)
+{
+	AddControllerYawInput(Rate * BaseTurnRate * GetWorld()->GetDeltaSeconds());
+}
+
+void ABaseCharacter::LookUpAtRate(float Rate)
+{
+	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
+}
+*/
 
 void ABaseCharacter::CameraRotate(float amount)
 {
@@ -176,13 +196,15 @@ void ABaseCharacter::CameraHeight(float amount)
 		// add the desired rotation
 		newHeight += amount;
 		// clamp the height into comfortable levels
-		newHeight = FMath::Clamp(newHeight, -45.f, -5.f);
+		newHeight = FMath::Clamp(newHeight, -60.f, 30.f);
 		// rebuild the rotation vector
 		rot = FVector(0, newHeight, rot.Z);
 		// apply the new rotation vector to the spring arm
 		SpringArm->SetWorldRotation(FQuat::MakeFromEuler(rot));
 	}
 }
+
+
 
 void ABaseCharacter::SprintStart()
 {

@@ -4,4 +4,5 @@
 * add Destructible mesh
 * add START&EXIT UI
 * add MovingPlatform only see on server
-* add code for somebody can see on client too
+* add code for somebody can see on client too(synchronic)
+* platform backwards and forwards
