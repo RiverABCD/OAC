@@ -34,31 +34,19 @@ void AOACTrigger::Tick(float DeltaTime)
 
 void AOACTrigger::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
 {
-	/*
 	UE_LOG(LogTemp, Warning, TEXT("Activated"));
 	if (GEngine)
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Activated"));
 	}
-	*/
-	for (AMovingPlatform* Platform : PlatformsToTrigger)
-	{
-		Platform->AddActiveTrigger();
-	}
 }
 
 void AOACTrigger::OnOverlapEnd(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex)
 {
-	/*
 	UE_LOG(LogTemp, Warning, TEXT("Deactivated"));
 	if (GEngine)
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Deactivated"));
-	}
-	*/
-	for (AMovingPlatform* Platform : PlatformsToTrigger)
-	{
-		Platform->RemoveActiveTrigger();
 	}
 }
 

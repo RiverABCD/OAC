@@ -22,13 +22,7 @@ public:
 		float Speed = 20.f;
 	UPROPERTY(EditAnyWhere, Meta = (MakeEditWidget = true))
 		FVector TargetLocation;
-	// for move platform by trigger
-	void AddActiveTrigger();
-	void RemoveActiveTrigger();
 private:
 	FVector GlobalStartLocation;
 	FVector GlobalTargetLocation;
-
-	UPROPERTY(EditAnywhere)
-		int ActiveTriggers = 1;
 };

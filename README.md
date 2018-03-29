@@ -7,3 +7,4 @@
 * add code for somebody can see on client too(synchronic)
 * platform backwards and forwards
 * Set Up A Platform Trigger& Handling Overlap Events In C++
+* Activating Platforms From Triggers
